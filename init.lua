@@ -1,0 +1,3 @@
+require("levikl")
+
+print("hello")
