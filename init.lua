@@ -1,3 +1,2 @@
 require("levikl")
 
-print("hello")
