@@ -1,0 +1,22 @@
+print("advent of neovim")
+print("advent of neovim 1")
+print("advent of neovim 2")
+print("advent of neovim 3")
+
+-- source the most recently saved version of current file
+vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
+-- source the current line
+vim.keymap.set("n", "<space>x", ":.lua<CR>")
+-- (in visual mode) source the current line
+vim.keymap.set("v", "<space>x", ":lua<CR>")
+
+-- Highlight when yanking (copying) text
+--  Try it with `yap` in normal mode
+--  See `:help vim.highlight.on_yank()`
+vim.api.nvim_create_autocmd("TextYankPost", {
+	desc = "Highlight when yanking (copying) text",
+	group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+	callback = function()
+		vim.highlight.on_yank()
+	end,
+})
