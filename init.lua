@@ -1,7 +1,6 @@
 print("advent of neovim")
-print("advent of neovim 1")
-print("advent of neovim 2")
-print("advent of neovim 3")
+
+require("config.lazy")
 
 -- source the most recently saved version of current file
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
