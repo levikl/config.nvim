@@ -1,5 +1,10 @@
 require("custom.lazy")
 
+vim.opt.shiftwidth = 4
+vim.opt.clipboard = "unnamedplus" -- pressing "p" pastes clipboard buffer
+vim.opt.number = true
+vim.opt.relativenumber = true
+
 -- source the most recently saved version of current file
 vim.keymap.set("n", "<space><space>x", "<cmd>source %<CR>")
 -- source the current line
