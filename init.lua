@@ -1,4 +1,5 @@
 require("custom.lazy")
+require("custom.floaterminal")
 
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus" -- pressing "p" pastes clipboard buffer
@@ -18,6 +19,7 @@ vim.keymap.set("n", "<space>x", ":.lua<CR>")                -- source the curren
 vim.keymap.set("v", "<space>x", ":lua<CR>")                 -- source the current line (in visual mode)
 vim.keymap.set("n", "<M-j>", "<cmd>cnext<CR>")
 vim.keymap.set("n", "<M-k>", "<cmd>cprev<CR>")
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>") -- breaks out of terminal mode
 
 -- Highlight when yanking (copying) text
 --  Try it with `yap` in normal mode
@@ -48,7 +50,20 @@ vim.keymap.set("n", "<space>st", function()
   job_id = vim.bo.channel
 end)
 
-vim.keymap.set("n", "<space>example", function()
-  -- go build, go test ./asdfasdf
-  vim.fn.chansend(job_id, { "ls -al\r\n" })
+-- vim.keymap.set("n", "<space>example", function()
+--   -- go build, go test ./asdfasdf
+--   vim.fn.chansend(job_id, { "ls -al\r\n" })
+-- end)
+
+local current_command = ""
+vim.keymap.set("n", "<space>te", function()
+  current_command = vim.fn.input("Command: ")
+end)
+
+vim.keymap.set("n", "<space>tr", function()
+  if current_command == "" then
+    current_command = vim.fn.input("Command: ")
+  end
+
+  vim.fn.chansend(job_id, { current_command .. "\r\n" })
 end)
