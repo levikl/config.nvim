@@ -1,5 +1,4 @@
 require("custom.lazy")
-require("custom.floaterminal")
 
 vim.opt.shiftwidth = 4
 vim.opt.clipboard = "unnamedplus" -- pressing "p" pastes clipboard buffer
