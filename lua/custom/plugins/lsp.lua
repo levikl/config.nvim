@@ -21,6 +21,9 @@ return {
 
       { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
+      -- Autoformatting
+      "stevearc/conform.nvim",
+
       -- Schema information
       "b0o/SchemaStore.nvim",
     },
@@ -274,6 +277,8 @@ return {
           end
         end,
       })
+
+      require("custom.autoformat").setup()
 
       require("lsp_lines").setup()
       vim.diagnostic.config { virtual_text = true, virtual_lines = false }
