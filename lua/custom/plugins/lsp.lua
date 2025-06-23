@@ -88,7 +88,7 @@ return {
                 checkThirdParty = false,
                 library = {
                   vim.env.VIMRUNTIME,
-                  vim.fn.stdpath "data" .. "/lazy",
+                  vim.fn.stdpath "data" .. "/lazy/plenary.nvim/lua",
                 },
               },
             },

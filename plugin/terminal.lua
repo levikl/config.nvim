@@ -1,8 +1,46 @@
+vim.keymap.set("t", "<esc><esc>", "<c-\\><c-n>") -- breaks out of terminal mode
+
+vim.api.nvim_create_autocmd("TermOpen", {
+  group = vim.api.nvim_create_augroup("custom-term-open", { clear = true }),
+  callback = function()
+    vim.opt.number = false
+    vim.opt.relativenumber = false
+  end,
+})
+
+-- local job_id = 0
+-- vim.keymap.set("n", "<space>st", function()
+--   vim.cmd.vnew()
+--   vim.cmd.term()
+--   vim.cmd.wincmd "J"
+--   vim.api.nvim_win_set_height(0, 15)
+--
+--   job_id = vim.bo.channel
+-- end)
+
+-- vim.keymap.set("n", "<space>example", function()
+--   -- go build, go test ./asdfasdf
+--   vim.fn.chansend(job_id, { "ls -al\r\n" })
+-- end)
+
+-- local current_command = ""
+-- vim.keymap.set("n", "<space>te", function()
+--   current_command = vim.fn.input "Command: "
+-- end)
+
+-- vim.keymap.set("n", "<space>tr", function()
+--   if current_command == "" then
+--     current_command = vim.fn.input "Command: "
+--   end
+--
+--   vim.fn.chansend(job_id, { current_command .. "\r\n" })
+-- end)
+
 local state = {
   floating = {
     buf = -1,
     win = -1,
-  }
+  },
 }
 
 local function create_floating_window(opts)
@@ -50,5 +88,4 @@ local toggle_terminal = function()
   end
 end
 
--- vim.api.nvim_create_user_command("Floaterminal", toggle_terminal, {})
 vim.keymap.set({ "n", "t" }, "<space>tt", toggle_terminal)
