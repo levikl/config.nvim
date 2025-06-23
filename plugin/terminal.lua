@@ -88,4 +88,4 @@ local toggle_terminal = function()
   end
 end
 
-vim.keymap.set({ "n", "t" }, "<space>tt", toggle_terminal)
+vim.keymap.set({ "n", "t" }, "<space>tp", toggle_terminal)
