@@ -22,7 +22,7 @@ return {
       { "https://git.sr.ht/~whynothugo/lsp_lines.nvim" },
 
       -- Autoformatting
-      "stevearc/conform.nvim",
+      -- "stevearc/conform.nvim",
 
       -- Schema information
       "b0o/SchemaStore.nvim",
@@ -61,9 +61,13 @@ return {
       local servers = {
         bashls = true,
         gopls = {
-          manual_install = true,
           settings = {
             gopls = {
+              completeUnimported = true,
+              usePlaceholders = true,
+              analyses = {
+                unusedparams = true,
+              },
               hints = {
                 assignVariableTypes = true,
                 compositeLiteralFields = true,
@@ -84,7 +88,7 @@ return {
                 checkThirdParty = false,
                 library = {
                   vim.env.VIMRUNTIME,
-                  vim.fn.stdpath('data') .. '/lazy',
+                  vim.fn.stdpath "data" .. "/lazy",
                 },
               },
             },
@@ -278,7 +282,7 @@ return {
         end,
       })
 
-      require("custom.autoformat").setup()
+      -- require("custom.autoformat").setup()
 
       require("lsp_lines").setup()
       vim.diagnostic.config { virtual_text = true, virtual_lines = false }
@@ -292,5 +296,5 @@ return {
         end
       end, { desc = "Toggle lsp_lines" })
     end,
-  }
+  },
 }
