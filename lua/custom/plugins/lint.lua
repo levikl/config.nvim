@@ -6,7 +6,6 @@ return {
       lint.linters_by_ft = {
         -- markdown = { "vale" },
         go = { "golangcilint" },
-        golang = { "golangcilint" },
       }
 
       vim.api.nvim_create_autocmd({ "BufWritePost" }, {
