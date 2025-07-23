@@ -105,13 +105,8 @@ return {
         -- pyright = true,
         biome = true,
         astro = true,
-        ts_ls = {
-          root_dir = require("lspconfig").util.root_pattern "package.json",
-          single_file = false,
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
+        ts_ls = true,
+        tailwindcss = true,
         -- vtsls = {
         --   server_capabilities = {
         --     documentFormattingProvider = false,
@@ -176,30 +171,6 @@ return {
 
         --   filetypes = { "c" },
         -- },
-
-        tailwindcss = {
-          init_options = {
-            userLanguages = {
-              elixir = "phoenix-heex",
-              eruby = "erb",
-              heex = "phoenix-heex",
-            },
-          },
-          filetypes = extend("tailwindcss", "filetypes", { "ocaml.mlx" }),
-          settings = {
-            tailwindCSS = {
-              experimental = {
-                classRegex = {
-                  [[class: "([^"]*)]],
-                  [[className="([^"]*)]],
-                },
-              },
-              includeLanguages = extend("tailwindcss", "settings.tailwindCSS.includeLanguages", {
-                ["ocaml.mlx"] = "html",
-              }),
-            },
-          },
-        },
       }
 
       local servers_to_install = vim.tbl_filter(function(key)
