@@ -105,7 +105,17 @@ return {
         -- pyright = true,
         biome = true,
         astro = true,
-        ts_ls = true,
+        html = {
+          server_capabilities = {
+            documentFormattingProvider = false,
+          },
+        },
+        emmet_ls = true,
+        ts_ls = {
+          server_capabilities = {
+            documentFormattingProvider = false,
+          },
+        },
         tailwindcss = true,
         -- vtsls = {
         --   server_capabilities = {
@@ -124,11 +134,11 @@ return {
             },
           },
         },
-        -- cssls = {
-        --   server_capabilities = {
-        --     documentFormattingProvider = false,
-        --   },
-        -- },
+        cssls = {
+          server_capabilities = {
+            documentFormattingProvider = false,
+          },
+        },
         yamlls = {
           settings = {
             yaml = {
