@@ -56,7 +56,11 @@ return {
       local lspconfig = require "lspconfig"
 
       local servers = {
-        bashls = true,
+        bashls = {
+          server_capabilities = {
+            documentFormattingProvider = false,
+          },
+        },
         gopls = {
           settings = {
             gopls = {
