@@ -56,11 +56,11 @@ return {
       local lspconfig = require "lspconfig"
 
       local servers = {
-        bashls = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
+        -- bashls = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        -- },
         gopls = {
           settings = {
             gopls = {
@@ -96,7 +96,7 @@ return {
           },
         },
         -- rust_analyzer = true,
-        svelte = true,
+        -- svelte = true,
         -- intelephense = {
         --   settings = {
         --     intelephense = {
@@ -107,53 +107,53 @@ return {
         --   },
         -- },
         -- pyright = true,
-        biome = true,
-        astro = true,
-        html = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
-        emmet_ls = true,
-        ts_ls = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
-        tailwindcss = true,
+        -- biome = true,
+        -- astro = true,
+        -- html = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        -- },
+        -- emmet_ls = true,
+        -- ts_ls = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        -- },
+        -- tailwindcss = true,
         -- vtsls = {
         --   server_capabilities = {
         --     documentFormattingProvider = false,
         --   },
         -- },
         -- denols = true,
-        jsonls = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-          settings = {
-            json = {
-              schemas = require("schemastore").json.schemas(),
-              validate = { enable = true },
-            },
-          },
-        },
-        cssls = {
-          server_capabilities = {
-            documentFormattingProvider = false,
-          },
-        },
-        yamlls = {
-          settings = {
-            yaml = {
-              schemaStore = {
-                enable = false,
-                url = "",
-              },
-              -- schemas = require("schemastore").yaml.schemas(),
-            },
-          },
-        },
+        -- jsonls = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        --   settings = {
+        --     json = {
+        --       schemas = require("schemastore").json.schemas(),
+        --       validate = { enable = true },
+        --     },
+        --   },
+        -- },
+        -- cssls = {
+        --   server_capabilities = {
+        --     documentFormattingProvider = false,
+        --   },
+        -- },
+        -- yamlls = {
+        --   settings = {
+        --     yaml = {
+        --       schemaStore = {
+        --         enable = false,
+        --         url = "",
+        --       },
+        --       -- schemas = require("schemastore").yaml.schemas(),
+        --     },
+        --   },
+        -- },
         -- gleam = {
         --   manual_install = true,
         -- },
@@ -198,7 +198,7 @@ return {
 
       require("mason").setup()
       local ensure_installed = {
-        "stylua",
+        -- "stylua",
         "lua_ls",
         "delve",
         -- "tailwind-language-server",
