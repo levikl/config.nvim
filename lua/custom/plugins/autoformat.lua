@@ -11,6 +11,7 @@ return {
         bash = { "shfmt" },
         zsh = { "shfmt" },
         lua = { "stylua" },
+        cs = { "csharpier" },
         go = { "gofumpt", "goimports-reviser", "golines" },
         -- python = { "isort", "black" },
         html = { "prettierd", "prettier", stop_after_first = true },
@@ -29,6 +30,14 @@ return {
       formatters = {
         shfmt = {
           prepend_args = { "-i", "2" },
+        },
+        csharpier = {
+          command = "csharpier",
+          args = {
+            "format",
+            "--write-stdout",
+          },
+          to_stdin = true,
         },
         -- golines = {
         --   prepend_args = { "--max-len=80" },

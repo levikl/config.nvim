@@ -7,6 +7,7 @@ return {
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
       { "fredrikaverpil/neotest-golang", version = "*" },
+      "Issafalcon/neotest-dotnet",
     },
     opts = {
       adapters = {
@@ -14,6 +15,7 @@ return {
           go_test_args = { "-v" },
           dap_go_enabled = true,
         },
+        ["neotest-dotnet"] = {},
       },
       status = { virtual_text = true },
       output = { open_on_run = true },
