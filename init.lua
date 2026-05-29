@@ -1,3 +1,5 @@
+vim.opt.termguicolors = true
+
 require "custom.lazy"
 
 -- Highlight when yanking (copying) text

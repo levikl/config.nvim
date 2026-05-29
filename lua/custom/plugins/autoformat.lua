@@ -11,28 +11,35 @@ return {
         bash = { "shfmt" },
         zsh = { "shfmt" },
         lua = { "stylua" },
-        cs = { "csharpier" },
+        cs = { "cshittier" },
+        kotlin = { "ktlint" },
         go = { "gofumpt", "goimports-reviser", "golines" },
+        -- php = { "php_cs_fixer" },
+        blade = { "blade-formatter" },
         -- python = { "isort", "black" },
         html = { "prettierd", "prettier", stop_after_first = true },
         css = { "prettierd", "prettier", stop_after_first = true },
+        -- json = { "prettierd", "prettier", stop_after_first = true },
         scss = { "prettierd", "prettier", stop_after_first = true },
         less = { "prettierd", "prettier", stop_after_first = true },
         postcss = { "prettierd", "prettier", stop_after_first = true },
         javascript = { "prettierd", "prettier", stop_after_first = true },
         typescript = { "prettierd", "prettier", stop_after_first = true },
         typescriptreact = { "prettierd", "prettier", stop_after_first = true },
+        svelte = { "prettierd", "prettier", stop_after_first = true },
       },
       default_format_opts = {
         lsp_format = "fallback",
       },
-      format_on_save = { timeout_ms = 1500 },
+      format_after_save = {
+        lsp_fallback = true,
+      },
       formatters = {
         shfmt = {
           prepend_args = { "-i", "2" },
         },
-        csharpier = {
-          command = "csharpier",
+        cshittier = {
+          command = "/home/levi/ws/cs/dn10/cshittier/my-csharpier/CSharpier",
           args = {
             "format",
             "--write-stdout",

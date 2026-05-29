@@ -1,6 +1,9 @@
 local set = vim.opt
 
-set.shiftwidth = 4
+set.expandtab = true
+set.tabstop = 2
+set.shiftwidth = 2
+set.softtabstop = 2
 set.clipboard = "unnamedplus" -- pressing "p" pastes clipboard buffer
 set.number = true
 set.relativenumber = true

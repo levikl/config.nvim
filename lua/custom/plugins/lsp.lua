@@ -36,7 +36,7 @@ return {
             "roslyn",
             "--stdio",
             "--logLevel=Information",
-            "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+            "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.log.get_filename()),
             "--razorSourceGenerator=" .. vim.fs.joinpath(rzls_path, "Microsoft.CodeAnalysis.Razor.Compiler.dll"),
             "--razorDesignTimePath="
               .. vim.fs.joinpath(rzls_path, "Targets", "Microsoft.NET.Sdk.Razor.DesignTime.targets"),
@@ -88,6 +88,16 @@ return {
 
       local lspconfig = require "lspconfig"
 
+      local function get_intelephense_license()
+        local f = io.open(os.getenv "HOME" .. "/intelephense/license.txt", "r")
+        if f then
+          local license = f:read "*l"
+          f:close()
+          return license
+        end
+        return ""
+      end
+
       local servers = {
         bashls = {
           server_capabilities = {
@@ -134,18 +144,26 @@ return {
         },
         -- rust_analyzer = true,
         svelte = true,
-        -- intelephense = {
-        --   settings = {
-        --     intelephense = {
-        --       format = {
-        --         braces = "k&r",
-        --       },
-        --     },
-        --   },
-        -- },
+        intelephense = {
+          init_options = {
+            licenceKey = get_intelephense_license(),
+          },
+          settings = {
+            intelephense = {
+              format = {
+                enable = false,
+              },
+            },
+          },
+        },
         -- pyright = true,
-        biome = true,
-        astro = true,
+        eslint = true,
+        -- biome = true,
+        astro = {
+          server_capabilities = {
+            documentFormattingProvider = false,
+          },
+        },
         html = {
           server_capabilities = {
             documentFormattingProvider = false,
@@ -180,20 +198,24 @@ return {
             documentFormattingProvider = false,
           },
         },
-        yamlls = {
-          settings = {
-            yaml = {
-              schemaStore = {
-                enable = false,
-                url = "",
-              },
-              -- schemas = require("schemastore").yaml.schemas(),
-            },
-          },
+        -- yamlls = {
+        --   settings = {
+        --     yaml = {
+        --       schemaStore = {
+        --         enable = false,
+        --         url = "",
+        --       },
+        --       -- schemas = require("schemastore").yaml.schemas(),
+        --     },
+        --   },
+        -- },
+        gleam = {
+          manual_install = true,
         },
-        -- gleam = {
+        -- kotlin = {
         --   manual_install = true,
         -- },
+        -- kotlin_language_server = true,
 
         -- elixirls = {
         --   cmd = { "/home/tjdevries/.local/share/nvim/mason/bin/elixir-ls" },
@@ -257,7 +279,8 @@ return {
           capabilities = capabilities,
         }, config)
 
-        lspconfig[name].setup(config)
+        vim.lsp.config[name] = config
+        vim.lsp.enable(name)
       end
 
       local disable_semantic_tokens = {
@@ -305,6 +328,54 @@ return {
           end
         end,
       })
+    end,
+  },
+  {
+    "AlexandrosAlexiou/kotlin.nvim",
+    pin = true,
+    dependencies = {
+      "neovim/nvim-lspconfig",
+    },
+    config = function()
+      require("kotlin").setup {
+        -- This plugin handles the LSP attachment directly,
+        -- bypassing standard mason-lspconfig
+      }
+    end,
+  },
+  {
+    "adalessa/laravel.nvim",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      "nvim-lua/plenary.nvim",
+      "nvim-neotest/nvim-nio",
+    },
+    ft = { "php", "blade" },
+    keys = {
+      {
+        "<leader>la",
+        function()
+          require("laravel").commands.run "artisan"
+        end,
+        desc = "Laravel Artisan",
+      },
+      {
+        "<leader>lr",
+        function()
+          require("laravel").commands.run "route:list"
+        end,
+        desc = "Laravel Routes",
+      },
+      {
+        "<leader>lm",
+        function()
+          require("laravel").commands.run "make:controller"
+        end,
+        desc = "Make Controller",
+      },
+    },
+    config = function()
+      require("laravel").setup()
     end,
   },
 }
